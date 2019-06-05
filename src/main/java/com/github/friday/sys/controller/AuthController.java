@@ -11,6 +11,16 @@ public class AuthController {
 
     @PostMapping("login")
     public ApiResult login() {
+        // 是否存在该用户
+
+        // 检查密码
+
+        // 密码错误N次，锁定一段时间
+
+        // 是否封号
+
+        // 生成jwt
+
         return null;
     }
 

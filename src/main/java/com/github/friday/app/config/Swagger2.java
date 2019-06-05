@@ -1,4 +1,4 @@
-package com.github.friday;
+package com.github.friday.app.config;
 
 import com.github.friday.app.base.ResultCode;
 import org.springframework.context.annotation.Bean;

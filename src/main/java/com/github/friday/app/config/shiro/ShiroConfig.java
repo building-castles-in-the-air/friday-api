@@ -74,6 +74,9 @@ public class ShiroConfig {
 		filterChainDefinitionMap.put("/v2/api-docs", "anon");
 		filterChainDefinitionMap.put("/webjars/**", "anon");
 
+		filterChainDefinitionMap.put("/sys/auth/login", "anon");
+		filterChainDefinitionMap.put("/sys/auth/logout", "anon");
+
 		// 表示需要认证才可以访问
 //		filterChainDefinitionMap.put("/*", "authc");
 		filterChainDefinitionMap.put("/**", "authc");
@@ -82,7 +85,7 @@ public class ShiroConfig {
 		// 未授权界面
 		bean.setUnauthorizedUrl("/401");
 		// 配置登录的url和登录成功的url
-		bean.setLoginUrl("/401");
+//		bean.setLoginUrl("/401");
 
 		bean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 		// 添加自己的过滤器并且取名为jwt
