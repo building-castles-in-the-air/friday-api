@@ -34,7 +34,7 @@ import java.util.Map;
 /**
  * shiro的配置类
  *
- * @author Administrator
+ * @author yintianwen
  *
  */
 @Configuration
@@ -68,18 +68,18 @@ public class ShiroConfig {
 
 		// 配置访问权限 anon-放行，authc-需要校验
 		LinkedHashMap<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
-
+		// swagger 不拦截
 		filterChainDefinitionMap.put("/swagger-ui.html", "anon");
-		filterChainDefinitionMap.put("**/swagger-resources/**", "anon");
-		filterChainDefinitionMap.put("/swagger-resources", "anon");
-		filterChainDefinitionMap.put("/swagger-resources/configuration/ui", "anon");
+		filterChainDefinitionMap.put("/swagger-resources/**", "anon");
+		filterChainDefinitionMap.put("/v2/api-docs", "anon");
+		filterChainDefinitionMap.put("/webjars/**", "anon");
 
 		// 表示需要认证才可以访问
 //		filterChainDefinitionMap.put("/*", "authc");
 		filterChainDefinitionMap.put("/**", "authc");
 //		filterChainDefinitionMap.put("/*.*", "authc");
 
-		// 未授权界面;
+		// 未授权界面
 		bean.setUnauthorizedUrl("/401");
 		// 配置登录的url和登录成功的url
 		bean.setLoginUrl("/401");
@@ -92,7 +92,6 @@ public class ShiroConfig {
 		return bean;
 	}
 
-	// 配置核心安全事务管理器
 	@Bean(name = "securityManager")
 	public SecurityManager securityManager() {
 		DefaultWebSecurityManager manager = new DefaultWebSecurityManager();
@@ -117,26 +116,18 @@ public class ShiroConfig {
 		return authRealm;
 	}
 
-	/**
-	 * cacheManager 缓存 redis实现 使用的是shiro-redis开源插件
-	 *
-	 * @return
-	 */
+	@Bean
 	public RedisCacheManager redisCacheManager() {
 		RedisCacheManager redisCacheManager = new RedisCacheManager();
 		redisCacheManager.setRedisManager(redisManager());
 		return redisCacheManager;
 	}
 
-	/**
-	 * 配置shiro redisManager 使用的是shiro-redis开源插件
-	 *
-	 * @return
-	 */
 	@Bean
 	public RedisManager redisManager() {
 		RedisManager redisManager = new RedisManager();
 		redisManager.setHost(redisProperties.getHost());
+		redisManager.setPassword(redisProperties.getPassword());
 		return redisManager;
 	}
 
