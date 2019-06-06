@@ -1,4 +1,4 @@
-package com.github.friday.app.base;
+package com.github.friday.common.base;
 
 public abstract class BaseController {
 }

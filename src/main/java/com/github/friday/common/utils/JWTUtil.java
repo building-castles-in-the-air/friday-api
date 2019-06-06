@@ -1,4 +1,4 @@
-package com.github.friday.app.utils;
+package com.github.friday.common.utils;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
@@ -13,7 +13,7 @@ import java.util.Date;
 public class JWTUtil {
 	/**
 	 * 校验token是否正确
-	 * 
+	 *
 	 * @param token
 	 *            密钥
 	 * @param secret
@@ -34,17 +34,18 @@ public class JWTUtil {
 
 	/**
 	 * 获得token中的信息无需secret解密也能获得
-	 * 
+	 *
 	 * @return token中包含的用户名
 	 */
-	public static String getUsername(String token) {
+	public static String getId(String token) {
 		try {
 			DecodedJWT jwt = JWT.decode(token);
-			return jwt.getClaim("username").asString();
+			return jwt.getClaim("id").asString();
 		} catch (JWTDecodeException e) {
 			return null;
 		}
 	}
+
 
 	public static Claim getClaim(String token, String key) {
 		try {
@@ -55,20 +56,11 @@ public class JWTUtil {
 		}
 	}
 
-	/**
-	 * 生成签名, EXPIRE_TIME后过期
-	 * 
-	 * @param username
-	 *            用户名
-	 * @param secret
-	 *            用户的密码
-	 * @return 加密的token
-	 */
-	public static String sign(String username, String secret) {
+	public static String sign(String id, String secret) {
 		try {
 			Algorithm algorithm = Algorithm.HMAC256(secret);
 			return JWT.create()
-					.withClaim("username", username)
+					.withClaim("id", id)
 					.withClaim("createTime", System.currentTimeMillis())
 					.sign(algorithm);
 		} catch (UnsupportedEncodingException e) {

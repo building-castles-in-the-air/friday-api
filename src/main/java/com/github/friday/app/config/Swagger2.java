@@ -1,6 +1,6 @@
 package com.github.friday.app.config;
 
-import com.github.friday.app.base.ResultCode;
+import com.github.friday.common.base.ResultCode;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.RequestMethod;

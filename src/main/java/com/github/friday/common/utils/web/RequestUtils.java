@@ -1,4 +1,4 @@
-package com.github.friday.app.utils;
+package com.github.friday.common.utils.web;
 
 import org.springframework.util.Assert;
 import org.springframework.web.context.request.RequestContextHolder;

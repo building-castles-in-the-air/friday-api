@@ -1,4 +1,4 @@
-package com.github.friday.app.utils;
+package com.github.friday.common.utils.web;
 
 import net.sf.json.JSONObject;
 import org.slf4j.Logger;

@@ -395,52 +395,52 @@ public class UserExample {
             return (Criteria) this;
         }
 
-        public Criteria andUserTypeEqualTo(Boolean value) {
+        public Criteria andUserTypeEqualTo(Integer value) {
             addCriterion("user_type =", value, "userType");
             return (Criteria) this;
         }
 
-        public Criteria andUserTypeNotEqualTo(Boolean value) {
+        public Criteria andUserTypeNotEqualTo(Integer value) {
             addCriterion("user_type <>", value, "userType");
             return (Criteria) this;
         }
 
-        public Criteria andUserTypeGreaterThan(Boolean value) {
+        public Criteria andUserTypeGreaterThan(Integer value) {
             addCriterion("user_type >", value, "userType");
             return (Criteria) this;
         }
 
-        public Criteria andUserTypeGreaterThanOrEqualTo(Boolean value) {
+        public Criteria andUserTypeGreaterThanOrEqualTo(Integer value) {
             addCriterion("user_type >=", value, "userType");
             return (Criteria) this;
         }
 
-        public Criteria andUserTypeLessThan(Boolean value) {
+        public Criteria andUserTypeLessThan(Integer value) {
             addCriterion("user_type <", value, "userType");
             return (Criteria) this;
         }
 
-        public Criteria andUserTypeLessThanOrEqualTo(Boolean value) {
+        public Criteria andUserTypeLessThanOrEqualTo(Integer value) {
             addCriterion("user_type <=", value, "userType");
             return (Criteria) this;
         }
 
-        public Criteria andUserTypeIn(List<Boolean> values) {
+        public Criteria andUserTypeIn(List<Integer> values) {
             addCriterion("user_type in", values, "userType");
             return (Criteria) this;
         }
 
-        public Criteria andUserTypeNotIn(List<Boolean> values) {
+        public Criteria andUserTypeNotIn(List<Integer> values) {
             addCriterion("user_type not in", values, "userType");
             return (Criteria) this;
         }
 
-        public Criteria andUserTypeBetween(Boolean value1, Boolean value2) {
+        public Criteria andUserTypeBetween(Integer value1, Integer value2) {
             addCriterion("user_type between", value1, value2, "userType");
             return (Criteria) this;
         }
 
-        public Criteria andUserTypeNotBetween(Boolean value1, Boolean value2) {
+        public Criteria andUserTypeNotBetween(Integer value1, Integer value2) {
             addCriterion("user_type not between", value1, value2, "userType");
             return (Criteria) this;
         }

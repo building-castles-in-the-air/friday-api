@@ -1,7 +1,7 @@
 package com.github.friday.app.aop;
 
-import com.github.friday.app.base.ResultBuilder;
-import com.github.friday.app.utils.RequestUtils;
+import com.github.friday.common.base.ResultBuilder;
+import com.github.friday.common.utils.web.RequestUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.redisson.api.RLock;
@@ -50,7 +50,11 @@ public class RepeatSubmitAspect {
 
             } finally {
                 // 解锁
-                redisLock.unlock();
+                try {
+                    redisLock.unlock();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
             }
 

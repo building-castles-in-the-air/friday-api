@@ -11,7 +11,7 @@ public class User {
 
     private String realName;
 
-    private Boolean userType;
+    private Integer userType;
 
     private Boolean isBan;
 
@@ -57,11 +57,11 @@ public class User {
         this.realName = realName == null ? null : realName.trim();
     }
 
-    public Boolean getUserType() {
+    public Integer getUserType() {
         return userType;
     }
 
-    public void setUserType(Boolean userType) {
+    public void setUserType(Integer userType) {
         this.userType = userType;
     }
 

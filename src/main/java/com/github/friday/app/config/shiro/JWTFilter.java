@@ -1,10 +1,10 @@
 package com.github.friday.app.config.shiro;
 
-import com.github.friday.app.base.ApiResult;
-import com.github.friday.app.base.ResultCode;
-import com.github.friday.app.exception.TokenException;
-import com.github.friday.app.utils.RequestUtils;
-import com.github.friday.app.utils.ResponseUtils;
+import com.github.friday.common.base.ApiResult;
+import com.github.friday.common.base.ResultCode;
+import com.github.friday.common.exception.SessionTimeOutException;
+import com.github.friday.common.utils.web.RequestUtils;
+import com.github.friday.common.utils.web.ResponseUtils;
 import org.apache.shiro.web.filter.authc.BasicHttpAuthenticationFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,11 +43,10 @@ public class JWTFilter extends BasicHttpAuthenticationFilter {
 		String authorization = getToken(httpServletRequest);
 		JWTToken token = new JWTToken(authorization);
 
-		// 提交给realm进行登入，如果错误他会抛出异常并被捕获
 		try {
 			getSubject(request, response).login(token);
 
-		} catch (TokenException e) {
+		} catch (SessionTimeOutException e) {
 			logger.warn(e.getMessage());
 			ApiResult apiResult = new ApiResult(e.getCode(), e.getMessage(), null);
 			ResponseUtils.responseWithJson((HttpServletResponse) response, apiResult);
@@ -60,7 +59,6 @@ public class JWTFilter extends BasicHttpAuthenticationFilter {
 			return false;
 		}
 
-		// 如果没有抛出异常则代表登入成功，返回true
 		return true;
 	}
 

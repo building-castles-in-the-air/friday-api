@@ -7,18 +7,32 @@ import org.springframework.context.annotation.PropertySource;
 import java.time.Duration;
 
 @Configuration
-@ConfigurationProperties(prefix = "sys")
+@ConfigurationProperties
 @PropertySource("classpath:config/system.properties")
 public class SystemConfig {
-    private Duration tokenExpire;
+    // Session
+    private Duration sessionTimeOut;
+    // jwt 秘钥
     private String secret;
+    // 允许登陆次数
+    private Integer allowLoginTimes;
+    // 登录锁失效时间
+    private Duration loginLockTimeOut;
 
-    public Duration getTokenExpire() {
-        return tokenExpire;
+    public Duration getSessionTimeOut() {
+        return sessionTimeOut;
     }
 
-    public void setTokenExpire(Duration tokenExpire) {
-        this.tokenExpire = tokenExpire;
+    public void setSessionTimeOut(Duration sessionTimeOut) {
+        this.sessionTimeOut = sessionTimeOut;
+    }
+
+    public Duration getLoginLockTimeOut() {
+        return loginLockTimeOut;
+    }
+
+    public void setLoginLockTimeOut(Duration loginLockTimeOut) {
+        this.loginLockTimeOut = loginLockTimeOut;
     }
 
     public String getSecret() {
@@ -27,5 +41,13 @@ public class SystemConfig {
 
     public void setSecret(String secret) {
         this.secret = secret;
+    }
+
+    public Integer getAllowLoginTimes() {
+        return allowLoginTimes;
+    }
+
+    public void setAllowLoginTimes(Integer allowLoginTimes) {
+        this.allowLoginTimes = allowLoginTimes;
     }
 }

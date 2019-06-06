@@ -1,7 +1,7 @@
-package com.github.friday.app.exception;
+package com.github.friday.common.exception;
 
-import com.github.friday.app.base.ApiResult;
-import com.github.friday.app.base.ResultBuilder;
+import com.github.friday.common.base.ApiResult;
+import com.github.friday.common.base.ResultBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.validation.BindException;

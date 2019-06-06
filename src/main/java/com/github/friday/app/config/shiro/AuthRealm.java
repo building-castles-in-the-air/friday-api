@@ -91,7 +91,7 @@ public class AuthRealm extends AuthorizingRealm {
 //            } else {
 //                // 注销当前token
 //                UserService.logout(token);
-//                throw new TokenException("您的账号已在其他设备登录，请重新登陆", 4001);
+//                throw new SessionTimeOutException("您的账号已在其他设备登录，请重新登陆", 4001);
 //            }
 //
 //        }
@@ -103,7 +103,7 @@ public class AuthRealm extends AuthorizingRealm {
 //        String userjsn = stringRedisTemplate.opsForValue().get(token);
 //
 //        if (StringUtils.isBlank(userjsn)) {
-//            throw new TokenException("令牌不存在");
+//            throw new SessionTimeOutException("令牌不存在");
 //        }
 //
 //        JSONObject user = JSONObject.fromObject(userjsn);

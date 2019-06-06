@@ -1,4 +1,4 @@
-package com.github.friday.app.base;
+package com.github.friday.common.base;
 
 public class ResultBuilder {
     public static final String opreateSuccess = "操作成功";

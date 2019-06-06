@@ -1,6 +1,6 @@
-package com.github.friday.app.exception;
+package com.github.friday.common.exception;
 
-import static com.github.friday.app.base.ApiResult.FAIL;
+import static com.github.friday.common.base.ApiResult.FAIL;
 
 public class ApiException extends RuntimeException {
     private Integer code;

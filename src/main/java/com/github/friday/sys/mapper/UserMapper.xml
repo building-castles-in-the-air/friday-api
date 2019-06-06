@@ -6,7 +6,7 @@
     <result column="username" property="username" jdbcType="VARCHAR" />
     <result column="password" property="password" jdbcType="VARCHAR" />
     <result column="real_name" property="realName" jdbcType="VARCHAR" />
-    <result column="user_type" property="userType" jdbcType="BIT" />
+    <result column="user_type" property="userType" jdbcType="INTEGER" />
     <result column="is_ban" property="isBan" jdbcType="BIT" />
     <result column="is_del" property="isDel" jdbcType="BIT" />
     <result column="create_user" property="createUser" jdbcType="VARCHAR" />
@@ -73,7 +73,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, username, password, real_name, user_type, is_ban, is_del, create_user, create_time, 
+    id, username, password, real_name, user_type, is_ban, is_del, create_user, create_time,
     modify_user, modify_time
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.github.friday.sys.domain.entity.UserExample" >
@@ -92,7 +92,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from sys_user
     where id = #{id,jdbcType=VARCHAR}
@@ -108,13 +108,13 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.github.friday.sys.domain.entity.User" >
-    insert into sys_user (id, username, password, 
-      real_name, user_type, is_ban, 
-      is_del, create_user, create_time, 
+    insert into sys_user (id, username, password,
+      real_name, user_type, is_ban,
+      is_del, create_user, create_time,
       modify_user, modify_time)
-    values (#{id,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{realName,jdbcType=VARCHAR}, #{userType,jdbcType=BIT}, #{isBan,jdbcType=BIT}, 
-      #{isDel,jdbcType=BIT}, #{createUser,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+    values (#{id,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+      #{realName,jdbcType=VARCHAR}, #{userType,jdbcType=INTEGER}, #{isBan,jdbcType=BIT},
+      #{isDel,jdbcType=BIT}, #{createUser,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
       #{modifyUser,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.github.friday.sys.domain.entity.User" >
@@ -168,7 +168,7 @@
         #{realName,jdbcType=VARCHAR},
       </if>
       <if test="userType != null" >
-        #{userType,jdbcType=BIT},
+        #{userType,jdbcType=INTEGER},
       </if>
       <if test="isBan != null" >
         #{isBan,jdbcType=BIT},
@@ -212,7 +212,7 @@
         real_name = #{record.realName,jdbcType=VARCHAR},
       </if>
       <if test="record.userType != null" >
-        user_type = #{record.userType,jdbcType=BIT},
+        user_type = #{record.userType,jdbcType=INTEGER},
       </if>
       <if test="record.isBan != null" >
         is_ban = #{record.isBan,jdbcType=BIT},
@@ -243,7 +243,7 @@
       username = #{record.username,jdbcType=VARCHAR},
       password = #{record.password,jdbcType=VARCHAR},
       real_name = #{record.realName,jdbcType=VARCHAR},
-      user_type = #{record.userType,jdbcType=BIT},
+      user_type = #{record.userType,jdbcType=INTEGER},
       is_ban = #{record.isBan,jdbcType=BIT},
       is_del = #{record.isDel,jdbcType=BIT},
       create_user = #{record.createUser,jdbcType=VARCHAR},
@@ -267,7 +267,7 @@
         real_name = #{realName,jdbcType=VARCHAR},
       </if>
       <if test="userType != null" >
-        user_type = #{userType,jdbcType=BIT},
+        user_type = #{userType,jdbcType=INTEGER},
       </if>
       <if test="isBan != null" >
         is_ban = #{isBan,jdbcType=BIT},
@@ -295,7 +295,7 @@
     set username = #{username,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
       real_name = #{realName,jdbcType=VARCHAR},
-      user_type = #{userType,jdbcType=BIT},
+      user_type = #{userType,jdbcType=INTEGER},
       is_ban = #{isBan,jdbcType=BIT},
       is_del = #{isDel,jdbcType=BIT},
       create_user = #{createUser,jdbcType=VARCHAR},
