@@ -1,6 +1,6 @@
 package com.github.friday.app.config.shiro;
 
-import com.github.friday.app.config.SystemConfig;
+import com.github.friday.app.constant.SystemConfig;
 import com.github.friday.common.exception.SessionTimeOutException;
 import com.github.friday.common.utils.web.RequestUtils;
 import com.github.friday.sys.domain.entity.User;
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
-import static com.github.friday.common.base.Constants.LOGIN_TRY_TIMES_PREFIX;
+import static com.github.friday.app.constant.Constants.LOGIN_TRY_TIMES_PREFIX;
 
 @Service
 public class DefaultShiroFactory implements ShiroFactory {

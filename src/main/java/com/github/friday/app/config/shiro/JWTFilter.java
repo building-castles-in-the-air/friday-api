@@ -15,6 +15,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
+ * JWTFilter 判断当前token是否可以访问API
+ * 通过执行subject.login 构建Shiro Subject
+ * 当token失效时返回401
+ *
  * 代码的执行流程preHandle->isAccessAllowed->isLoginAttempt->executeLogin
  */
 public class JWTFilter extends BasicHttpAuthenticationFilter {
@@ -34,9 +38,6 @@ public class JWTFilter extends BasicHttpAuthenticationFilter {
 		return authorization != null;
 	}
 
-	/**
-	 *
-	 */
 	@Override
 	protected boolean executeLogin(ServletRequest request, ServletResponse response) {
 		HttpServletRequest httpServletRequest = (HttpServletRequest) request;
@@ -63,7 +64,7 @@ public class JWTFilter extends BasicHttpAuthenticationFilter {
 	}
 
 	/**
-	 * 如果找不到token，或者读取token出错，标识调用方是非法调用，调转到401报错
+	 * 请求没有携带token，返回401
 	 */
 	@Override
 	protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) {

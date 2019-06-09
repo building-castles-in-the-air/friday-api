@@ -1,8 +1,8 @@
 package com.github.friday.sys.controller;
 
 import com.github.friday.app.aop.NoRepeatSubmit;
-import com.github.friday.app.config.MessageTemplate;
-import com.github.friday.app.config.SystemConfig;
+import com.github.friday.app.constant.MessageTemplate;
+import com.github.friday.app.constant.SystemConfig;
 import com.github.friday.app.config.shiro.ShiroFactory;
 import com.github.friday.common.base.ApiResult;
 import com.github.friday.common.base.BaseController;

@@ -8,6 +8,9 @@ import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 import java.util.*;
 
+/**
+ * 基于hibernate validate的校验工具类
+ */
 public class ValidateUtils {
 
 	/**
@@ -38,7 +41,13 @@ public class ValidateUtils {
 		return errList;
 	}
 
-	public static <T> List<Map> validateList(T t) {
+	/**
+	 * 校验List<T>
+	 *
+	 * @param t
+	 * @return
+	 */
+	public static List<Map> validateList(ValidList t) {
 		//定义返回错误List
 		List<Map> errList = new ArrayList<>();
 
@@ -48,9 +57,9 @@ public class ValidateUtils {
 
 		Validator validator = factory.getValidator();
 
-		Set<ConstraintViolation<T>> errorSet = validator.validate(t);
+		Set<ConstraintViolation<ValidList>> errorSet = validator.validate(t);
 
-		for (ConstraintViolation<T> c : errorSet) {
+		for (ConstraintViolation<ValidList> c : errorSet) {
 			errorMap = new HashMap<>();
 			int index = ((PathImpl) c.getPropertyPath()).getLeafNode().getIndex();
 			errorMap.put("index", index); // 当前索引

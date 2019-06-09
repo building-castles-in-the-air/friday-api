@@ -1,4 +1,4 @@
-package com.github.friday.common.base;
+package com.github.friday.app.constant;
 
 /**
  * 常量类

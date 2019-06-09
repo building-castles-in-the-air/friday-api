@@ -1,4 +1,4 @@
-package com.github.friday.app.config;
+package com.github.friday.app.constant;
 
 import java.io.IOException;
 import java.io.InputStream;

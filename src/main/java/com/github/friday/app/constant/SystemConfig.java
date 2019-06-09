@@ -1,4 +1,4 @@
-package com.github.friday.app.config;
+package com.github.friday.app.constant;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
