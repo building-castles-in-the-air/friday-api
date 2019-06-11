@@ -10,6 +10,8 @@ import com.github.friday.common.base.BaseController;
 import com.github.friday.common.base.ResultBuilder;
 import com.github.friday.common.utils.JWTUtil;
 import com.github.friday.sys.domain.entity.User;
+import com.github.friday.sys.domain.entity.UserRole;
+import com.github.friday.sys.service.RoleService;
 import com.github.friday.sys.service.UserService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -22,6 +24,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("sys/auth")
@@ -30,6 +34,8 @@ public class AuthController extends BaseController {
     private SystemConfig systemConfig;
     @Autowired
     private UserService userService;
+    @Autowired
+    private RoleService roleService;
     @Autowired
     private ShiroFactory shiroFactory;
 
@@ -103,8 +109,44 @@ public class AuthController extends BaseController {
     public ApiResult getUserInfo() {
 //        shiroFactory.logout();
         ShiroUser user = shiroFactory.getShiroUser();
+        List<UserRole> userRole = roleService.selectRolesByUserId(user.getId());
 
-        return ResultBuilder.opreateSuccess();
+        UserInfo userInfo = new UserInfo();
+        userInfo.setName(user.getUsername());
+        userInfo.setAvatar("https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3914950518,3569645197&amp;fm=27&amp;gp=0.jpg");
+        userInfo.setRoles(userRole.stream().map(UserRole::getRoleId).collect(Collectors.toList()));
+
+        return ResultBuilder.success(userInfo);
+    }
+
+    public static class UserInfo {
+        private String name;
+        private String avatar;
+        private List<String> roles;
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getAvatar() {
+            return avatar;
+        }
+
+        public void setAvatar(String avatar) {
+            this.avatar = avatar;
+        }
+
+        public List<String> getRoles() {
+            return roles;
+        }
+
+        public void setRoles(List<String> roles) {
+            this.roles = roles;
+        }
     }
 
     @PostMapping("logout")
