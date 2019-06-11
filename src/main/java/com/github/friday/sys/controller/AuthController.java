@@ -1,6 +1,7 @@
 package com.github.friday.sys.controller;
 
 import com.github.friday.app.aop.NoRepeatSubmit;
+import com.github.friday.app.config.shiro.ShiroUser;
 import com.github.friday.app.constant.MessageTemplate;
 import com.github.friday.app.constant.SystemConfig;
 import com.github.friday.app.config.shiro.ShiroFactory;
@@ -91,6 +92,19 @@ public class AuthController extends BaseController {
             this.password = password == null ? null : password.trim();
         }
 
+    }
+
+    @PostMapping("info")
+    @NoRepeatSubmit
+    @ApiOperation(value = "获取用户信息", notes = "获取用户信息")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "Authorization", value = "访问令牌", required = true, dataType = "string", paramType = "header"),
+    })
+    public ApiResult getUserInfo() {
+//        shiroFactory.logout();
+        ShiroUser user = shiroFactory.getShiroUser();
+
+        return ResultBuilder.opreateSuccess();
     }
 
     @PostMapping("logout")
