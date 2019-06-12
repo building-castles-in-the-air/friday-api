@@ -1,8 +1,7 @@
 package com.github.friday.sys.service;
 
-import com.github.friday.sys.domain.entity.UserRole;
-import com.github.friday.sys.domain.entity.UserRoleExample;
-import com.github.friday.sys.mapper.UserRoleMapper;
+import com.github.friday.sys.domain.entity.Role;
+import com.github.friday.sys.mapper.rewriteMapper.UserRoleRewriteMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,13 +11,11 @@ import java.util.List;
 public class RoleServiceImpl implements RoleService {
 
     @Autowired
-    private UserRoleMapper userRoleMapper;
+    private UserRoleRewriteMapper userRoleRewriteMapper;
 
     @Override
-    public List<UserRole> selectRolesByUserId(String userId) {
-        UserRoleExample example = new UserRoleExample();
-        example.createCriteria()
-                .andUserIdEqualTo(userId);
-        return userRoleMapper.selectByExample(example);
+    public List<Role> selectRoleNameByUserId(String userId) {
+
+        return userRoleRewriteMapper.selectRoleNameByUserId(userId);
     }
 }

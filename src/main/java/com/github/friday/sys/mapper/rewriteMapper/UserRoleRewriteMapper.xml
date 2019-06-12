@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.github.friday.sys.mapper.rewriteMapper.UserRoleRewriteMapper">
+    <resultMap id="BaseResultMap" type="com.github.friday.sys.domain.entity.Role">
+        <id column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="role_name" property="roleName" jdbcType="VARCHAR"/>
+        <result column="role_chs_name" property="roleChsName" jdbcType="VARCHAR"/>
+        <result column="role_desc" property="roleDesc" jdbcType="VARCHAR"/>
+        <result column="is_del" property="isDel" jdbcType="BIT"/>
+        <result column="create_user" property="createUser" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="modify_user" property="modifyUser" jdbcType="VARCHAR"/>
+        <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <select id="selectRoleNameByUserId" parameterType="String" resultMap="BaseResultMap">
+        select r.id,r.role_name from sys_user u left join sys_user_role ur on u.id=ur.user_id
+        left join sys_role r on r.id=ur.role_id where u.id = #{id}
+    </select>
+</mapper>
