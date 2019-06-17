@@ -2,6 +2,7 @@ package com.github.friday.sys.service;
 
 import com.github.friday.app.config.shiro.ShiroUser;
 import com.github.friday.common.utils.mapper.SqlHelper;
+import com.github.friday.sys.domain.dto.PermissionDTO;
 import com.github.friday.sys.domain.entity.Role;
 import com.github.friday.sys.domain.entity.User;
 import com.github.friday.sys.domain.entity.UserExample;
@@ -37,11 +38,19 @@ public class UserServiceImpl implements UserService {
         String username = shiroUser.getUsername();
         // 查询对应的角色
         List<Role> roles = userRoleRewriteMapper.selectRoleNameByUserId(userId);
+        List<PermissionDTO> permissionDTOList = userRoleRewriteMapper.selectMenuList(userId);
+        List<UserInfoVO.Routes> routes = permissionConvert(permissionDTOList);
 
         UserInfoVO userInfo = new UserInfoVO();
         userInfo.setName(username);
         userInfo.setAvatar(DEFAULT_AVATAR);
         userInfo.setRoles(roles.stream().map(Role::getRoleName).collect(Collectors.toList()));
+        userInfo.setRoutes(routes);
         return userInfo;
     }
+
+    private List<UserInfoVO.Routes> permissionConvert(List<PermissionDTO> permissionDTOList) {
+        return null;
+    }
+
 }

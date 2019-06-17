@@ -19,4 +19,34 @@
         left join sys_user_role ur on u.id=ur.user_id
         left join sys_role r on r.id=ur.role_id where u.id = #{id}
     </select>
+
+    <resultMap id="MenuListRM" type="com.github.friday.sys.domain.dto.PermissionDTO">
+        <id column="id" property="id"></id>
+        <result column="url" property="url"></result>
+        <result column="pname" property="pname"></result>
+        <collection property="childrenList" ofType="com.github.friday.sys.domain.dto.PermissionDTO">
+            <id column="cid" property="id"></id>
+            <result column="curl" property="url"></result>
+            <result column="cpname" property="pname"></result>
+        </collection>
+    </resultMap>
+
+    <select id="selectMenuList" resultMap="MenuListRM">
+        SELECT
+            pp.id,
+            pp.url,
+            pp.pname,
+            cp.id cid,
+            cp.url curl,
+            cp.pname cpname
+        FROM
+            sys_user_role ur
+            LEFT JOIN sys_role_permisson rp ON ur.role_id = rp.role_id
+            LEFT JOIN sys_permission pp ON rp.permission_id = pp.id
+            LEFT JOIN sys_permission cp ON pp.id = cp.parent_id
+        WHERE
+            pp.parent_id = '0'
+            AND cp.ptype = '1'
+            AND ur.user_id = #{userId}
+    </select>
 </mapper>
