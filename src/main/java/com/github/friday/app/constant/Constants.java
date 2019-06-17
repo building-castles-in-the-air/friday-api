@@ -14,4 +14,6 @@ public interface Constants {
     String LOGIN_TRY_TIMES_PREFIX = "login_try_times_";
 
     String USER_TOKEN_PREFIX = "user_token_";
+
+    String DEFAULT_AVATAR = "https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif";
 }
